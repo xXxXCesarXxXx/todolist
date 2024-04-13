@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todolist/view/form_task.dart';
 
 import 'firebase_options.dart'; // Importación de las opciones de Firebase. Esto puede contener la configuración de Firebase para la plataforma específica.
 
@@ -58,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return const Text(
-                  'Cargando Datos...'); // Muestra un mensaje de carga si no hay datos disponibles.
+                  'Cargando Datos.....'); // Muestra un mensaje de carga si no hay datos disponibles.
             return ListView.builder(
                 itemCount: snapshot.data?.docs
                     .length, // Obtiene la cantidad de documentos en la colección.
@@ -75,8 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         // Botón flotante para agregar nuevas tareas.
         onPressed: () {
-          print(
-              'Hola'); // Imprime un mensaje en la consola cuando se presiona el botón.
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const AddNewTaskScreen()),
+          ); //redirecciona a otra ventana
         },
         tooltip: 'Agregar Nueva Tarea', // Tooltip del botón flotante.
         child: const Icon(Icons.add), // Icono del botón flotante.
